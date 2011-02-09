@@ -62,6 +62,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="fanndoubleMTd.lib $(NOINHERIT)"
 				LinkIncremental="2"
+				SuppressStartupBanner="false"
 				AdditionalLibraryDirectories="&quot;Z:\fann-2.1.0\MicrosoftWindowsDll\Debug Double Multithread&quot;"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
