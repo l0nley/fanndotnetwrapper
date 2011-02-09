@@ -3,6 +3,14 @@ This source code depends on
 	Boost - available from http://www.boost.org
 	Visual Studio 2008
 	
+To Use....
+
+Both Debug and Release builds of Fann.Net.dll are included in the respective directories. Add the dll to your references. Documentation on usage to come...	
+	
+	
+To Build......	
+	
+	
 1) Download Fann 2.1.0 and Boost > 1.38.0
 2) Create a directory <fann dir>\Fann.Net
 3) Copy this source tree there.
