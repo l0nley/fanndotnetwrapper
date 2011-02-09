@@ -1,7 +1,7 @@
 This source code depends on 
 	FANN - available from http://leenissen.dk/fann/wp/
 	Boost - available from http://www.boost.org
-	Visual Studio 2010
+	Visual Studio 2008
 	
 1) Download Fann 2.1.0 and Boost > 1.38.0
 2) Create a directory <fann dir>\Fann.Net
