@@ -1,7 +1,6 @@
 glob:*.suo
 glob:*.user
 glob:*.pch
-glob:*.pdb
 glob:*.idb
 glob:*.htm
 glob:*.vshost.exe
