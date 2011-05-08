@@ -138,7 +138,7 @@ void TrainingData::SetTrainData(unsigned int numData,
 	typedef boost::multi_array<double, 2> array_type;
 	//typedef array_type::index input;
 	array_type inputsMulti(boost::extents[numData][numInput]);
-	array_type outputsMulti(boost::extents[numData][numInput]);
+	array_type outputsMulti(boost::extents[numData][numOutput]);
 
 	boost::scoped_array<fann_type*> fannInput(new fann_type*[numData]);
 	boost::scoped_array<fann_type*> fannOutput(new fann_type*[numData]);
@@ -146,13 +146,13 @@ void TrainingData::SetTrainData(unsigned int numData,
 	for(size_t i=0;i<numData;++i)
 	{
 		fannInput[i] = &inputsMulti[i][0];
-		for(size_t j=0;j<numData;++j)
+		for(size_t j=0;j<numInput;++j)
 		{
 			inputsMulti[i][j] = input[i][j];
 		}
 
 		fannOutput[i] = &outputsMulti[i][0];
-		for(size_t j=0;j<numData;++j)
+		for(size_t j=0;j<numOutput;++j)
 		{
 			outputsMulti[i][j] = output[i][j];
 		}
