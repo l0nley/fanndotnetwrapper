@@ -88,14 +88,6 @@ public enum class NetworkType
     ShortCut
 };
 
-#pragma managed(push,off)
-
-static int doCallback(neural_net &net, training_data &train,
-    unsigned int max_epochs, unsigned int epochs_between_reports,
-    float desired_error, unsigned int epochs, void *user_data);
-
-#pragma managed(pop)
-
 public ref class NeuralNet : ProxyImpl<FANN::neural_net>
 {
 public:
@@ -248,9 +240,10 @@ internal:
 	CallbackType^ callbackHandler;
 	GCHandle gch;
 
-    delegate int InternalCallbackType (neural_net &net, training_data &train,
-        unsigned int max_epochs, unsigned int epochs_between_reports,
-        float desired_error, unsigned int epochs, void *user_data);
+	[UnmanagedFunctionPointer(CallingConvention::Cdecl)]
+	delegate int InternalCallbackType (neural_net &net, training_data &train,
+		unsigned int max_epochs, unsigned int epochs_between_reports,
+		float desired_error, unsigned int epochs, void *user_data);
 
 	int InternalCallback(neural_net &net, training_data &train,
         unsigned int max_epochs, unsigned int epochs_between_reports,
@@ -259,7 +252,7 @@ internal:
 private:
 
 	static Dictionary<unsigned int,NeuralNet^>^ m_Instances = gcnew Dictionary<unsigned int,NeuralNet^>();
-
+	InternalCallbackType^ m_internalCallback;
 };
 
 

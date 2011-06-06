@@ -104,13 +104,13 @@ namespace Fann.Net.Xor.Test
 
                 System.Console.WriteLine("Max Epochs " + max_iterations + ". "
                     + "Desired Error: " + desired_error);
-                /*
+                
                 net.Callback += (nn, train, max_epochs, epochs_between_reports, de, epochs) 
                     => {
                         System.Console.WriteLine("Epochs     " + epochs + ". " + "Current Error: " + nn.GetMSE() + "\n");
                         return 0; 
                     };
-                */ 
+                
                 net.TrainOnData(data, max_iterations,
                     iterations_between_reports, desired_error);
 

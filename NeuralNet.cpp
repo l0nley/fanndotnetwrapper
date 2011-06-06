@@ -673,19 +673,16 @@ int NeuralNet::InternalCallback(neural_net &net, training_data &train,
 
 void NeuralNet::Callback::add( CallbackType^ handler )
 {
-	InternalCallbackType^ internalCallback = gcnew InternalCallbackType(this,&NeuralNet::InternalCallback);
-	gch = GCHandle::Alloc(internalCallback);
-	FANN::callback_type icb = static_cast<FANN::callback_type>(Marshal::GetFunctionPointerForDelegate(internalCallback).ToPointer());
+	m_internalCallback = gcnew InternalCallbackType(this,&NeuralNet::InternalCallback);
+	IntPtr ptr = Marshal::GetFunctionPointerForDelegate(m_internalCallback);
 
-	Raw().set_callback(icb,0);
-	callbackHandler = handler;
-
-	throw gcnew System::NotImplementedException("Sorry the callback functionality has not been implemented fully yet!!!");
+	Raw().set_callback(static_cast<FANN::callback_type>(ptr.ToPointer()),0);
+	callbackHandler += handler;
 }
 
 void NeuralNet::Callback::remove( CallbackType^ handler )
 {
-	callbackHandler = nullptr;
+	callbackHandler -=handler;
 }
 
 int NeuralNet::Callback::raise(NeuralNet^ net, TrainingData^ train,
@@ -695,20 +692,6 @@ int NeuralNet::Callback::raise(NeuralNet^ net, TrainingData^ train,
 	return callbackHandler(net,train,maxEpochs,epochsBetweenReports,desiredError,epochs);
 }
 
-
-#pragma managed(push,on)
-
-static int doCallback(neural_net &net, training_data &train,
-    unsigned int max_epochs, unsigned int epochs_between_reports,
-    float desired_error, unsigned int epochs, void *user_data)
-{
-	NeuralNet^ nn = NeuralNet::Instance(&net);
-	TrainingData^ td = TrainingData::Instance(&train);
-
-	return nn->Callback(nn,td,max_epochs,epochs_between_reports,desired_error,epochs);
-}
-
-#pragma managed(pop)
 
 }
 }
