@@ -173,7 +173,7 @@ public:
     unsigned int GetNumLayers();
     void GetLayerArray(unsigned int *layers);
     void GetBiasArray(unsigned int *bias);
-    void GetConnectionArray(array<FANN::Net::Connection^,1>^ connections);
+    void GetConnectionArray(array<Connection^,1>^ % connections);
     void SetWeightArray(array<FANN::Net::Connection^,1>^ connections);
     void SetWeight(unsigned int from_neuron, unsigned int toNeuron, fann_type weight);
     float GetLearningMomentum();

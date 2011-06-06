@@ -379,7 +379,7 @@ void NeuralNet::GetBiasArray(unsigned int *bias)
 	Raw().get_bias_array(bias);
 }
 
-void NeuralNet::GetConnectionArray(array<Connection^,1>^ connections)
+void NeuralNet::GetConnectionArray(array<Connection^,1>^ % connections);
 {
 	std::vector<FANN::connection> connsVector(Raw().get_total_connections());
 
