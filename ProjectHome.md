@@ -1,0 +1,1 @@
+A .Net Wrapper for the FANN neural net library. FANN can be found here: http://leenissen.dk/fann/wp/
